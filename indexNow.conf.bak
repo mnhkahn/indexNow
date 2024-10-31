@@ -1,0 +1,5 @@
+BING_KEY = XXXX
+BING_KEY_LOCATION = https://www.cyeam.com/acf866de82d0426289ff41b3de66f0b7.txt
+BING_SUBMIT_HOST = https://www.cyeam.com
+BAIDU_API = http://data.zz.baidu.com/urls?site=https://www.cyeam.com&token=XXXXX
+GOOGLE_CREDENTIALS_FILE = 
