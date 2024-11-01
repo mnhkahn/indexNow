@@ -38,7 +38,7 @@ func main() {
 	// 初始化 Baidu 提交器
 	// baiduSubmitter := urlsubmitter.NewBaiduSubmitter(baiduAPI)
 	// 初始化 Google 提交器
-	googleSubmitter := urlsubmitter.NewGoogleSubmitter("/path/to/your-svc-account-keys.json")
+	googleSubmitter := urlsubmitter.NewGoogleSubmitter(googleCredentialsFile)
 
 	urlBytes, err := os.ReadFile(urlFile)
 	if err != nil {
@@ -51,9 +51,12 @@ func main() {
 
 	urls := []string{}
 	for _, u := range bytes.Split(urlBytes, []byte("\n")) {
+		if string(u) == "" {
+			continue
+		}
 		urls = append(urls, string(u))
 	}
-	logger.Info(urls)
+	logger.Info(urls, len(urls))
 
 	// // 提交 URL 到 Bing
 	// bingResult, err := bingSubmitter.SubmitURLs(urls)
@@ -74,8 +77,8 @@ func main() {
 	// 提交 URL 到 Google
 	googleResult, err := googleSubmitter.SubmitURLs(urls)
 	if err != nil {
-		logger.Error("Error submitting to Bing:", err)
+		logger.Error("Error submitting to Google:", err)
 		os.Exit(1)
 	}
-	logger.Info("Bing Result:", googleResult)
+	logger.Info("Google Result:", googleResult)
 }
